@@ -1,5 +1,7 @@
 import sys
+
 sys.path.append('.')
+
 from model.category import Category
 
 
@@ -23,8 +25,26 @@ def test_category_validate_name_empty():
 
 def test_category_validate_name_len():
     try:
-        Category('Category'*100, 'Eletronicos')
+        Category('Category' * 100, 'Eletronicos')
         raise NotImplementedError('Exception not raised!')
     except Exception as e:
         assert isinstance(e, ValueError)
         assert e.args == ("Name must be 100 characters or less!",)
+
+
+def test_category_validate_description_str():
+    try:
+        Category('Category', 10)
+        raise NotImplementedError('Exception not raised!')
+    except Exception as e:
+        assert isinstance(e, TypeError)
+        assert e.args == ("Description must be a string!",)
+
+
+def test_category_validate_description_len():
+    try:
+        Category('Category', 'Eletronicos'*100)
+        raise NotImplementedError('Exception not raised!')
+    except Exception as e:
+        assert isinstance(e, ValueError)
+        assert e.args == ("Description must be 255 characters or less!",)
