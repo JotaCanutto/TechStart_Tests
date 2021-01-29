@@ -43,8 +43,13 @@ def test_category_validate_description_str():
 
 def test_category_validate_description_len():
     try:
-        Category('Category', 'Eletronicos'*100)
+        Category('Category', 'Eletronicos' * 100)
         raise NotImplementedError('Exception not raised!')
     except Exception as e:
         assert isinstance(e, ValueError)
         assert e.args == ("Description must be 255 characters or less!",)
+
+
+def test_create_valid_category():
+    category = Category('Nome', 'Descrição')
+    assert isinstance(category, Category)
