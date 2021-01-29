@@ -4,12 +4,13 @@ from sqlalchemy import String, Column, Integer
 
 Base = declarative_base()
 
+
 class Category(Base):
     __tablename__ = 'category'
 
     id_ = Column('id', Integer, primary_key=True)
     name = Column('name', String(length=100), nullable=False)
-    description = Column ('description', String(length=255), nullable=True)
+    description = Column('description', String(length=255), nullable=True)
 
     def __init__(self, name: str, description: str) -> None:
         self.name = name
