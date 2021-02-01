@@ -3,51 +3,32 @@ import sys
 sys.path.append('.')
 
 from model.category import Category
+import pytest
 
 
 def test_category_validate_name_str():
-    try:
+    with pytest.raises(TypeError):
         Category(10, 'Eletronicos')
-        raise NotImplementedError('Exception not raised!')
-    except Exception as e:
-        assert isinstance(e, TypeError)
-        assert e.args == ("Name must be a string!",)
 
 
 def test_category_validate_name_empty():
-    try:
+    with pytest.raises(ValueError):
         Category('', 'Eletronicos')
-        raise NotImplementedError('Exception not raised!')
-    except Exception as e:
-        assert isinstance(e, ValueError)
-        assert e.args == ("Name can't be null!",)
 
 
 def test_category_validate_name_len():
-    try:
+    with pytest.raises(ValueError):
         Category('Category' * 100, 'Eletronicos')
-        raise NotImplementedError('Exception not raised!')
-    except Exception as e:
-        assert isinstance(e, ValueError)
-        assert e.args == ("Name must be 100 characters or less!",)
 
 
 def test_category_validate_description_str():
-    try:
+    with pytest.raises(TypeError):
         Category('Category', 10)
-        raise NotImplementedError('Exception not raised!')
-    except Exception as e:
-        assert isinstance(e, TypeError)
-        assert e.args == ("Description must be a string!",)
 
 
 def test_category_validate_description_len():
-    try:
+    with pytest.raises(ValueError):
         Category('Category', 'Eletronicos' * 100)
-        raise NotImplementedError('Exception not raised!')
-    except Exception as e:
-        assert isinstance(e, ValueError)
-        assert e.args == ("Description must be 255 characters or less!",)
 
 
 def test_create_valid_category():
