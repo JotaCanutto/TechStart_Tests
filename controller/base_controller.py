@@ -8,7 +8,7 @@ class BaseController:
         self.__dao = dao
                 
     def create(self, model: BaseModel) -> None:
-        self.__dao.save(model)
+        return self.__dao.save(model)
        
     def read_by_id(self, id: int) -> BaseModel:
         result = self.__dao.read_by_id(id)
@@ -23,4 +23,4 @@ class BaseController:
         self.__dao.delete(item)
         
     def update(self, model: BaseModel) -> None:
-        self.__dao.save(model)
+        return self.__dao.save(model)

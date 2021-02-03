@@ -1,3 +1,6 @@
+import sys
+sys.path.append('.')
+
 from sqlalchemy.orm.exc import UnmappedInstanceError
 from dao.category_dao import CategoryDao
 from model.category import Category
@@ -8,7 +11,7 @@ class TestsCategorytDao:
     @pytest.fixture
     def create_instance(self):
         cat = Category('alfafa', 'verde')
-        return 
+        return cat
 
     def test_instance(self):
         category_dao = CategoryDao()
@@ -33,7 +36,7 @@ class TestsCategorytDao:
 
     def test_not_read_by_id(self):
         with pytest.raises(TypeError):
-            category_read = CategoryDao().read_by_id('sport_saved.id_')
+            category_read = CategoryDao().read_by_id('testess')
 
     def test_read_all(self):
         category_read = CategoryDao().read_all()
@@ -50,4 +53,4 @@ class TestsCategorytDao:
 
     def test_not_delete(self):
         with pytest.raises(UnmappedInstanceError):
-            CategoryDao().delete('sport_read')
+            CategoryDao().delete('teste')
