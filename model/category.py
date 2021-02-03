@@ -5,6 +5,7 @@ from model.base_model import BaseModel
 
 class Category(BaseModel):
     __tablename__ = 'category'
+    
 
     id_ = Column('id', Integer, primary_key=True)
     name = Column('name', String(length=100), nullable=False)
