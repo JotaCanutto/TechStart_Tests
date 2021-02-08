@@ -1,0 +1,35 @@
+{% extends 'template.html' %}
+{% block body %}
+    <table>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Delete
+            </th>
+            <th>
+                Update
+            </th>
+        </tr>
+        {% for category in categories %}
+        <tr>
+            <td>
+                {{ category.name }}
+            </td>
+            <td>
+                {{ category.description }}
+            </td>
+            <td>
+                <a href='/category/delete?id={{category.id_}}'> Delete</a>
+            </td>
+            <td>
+                <a href='/category/create?id={{category.id_}}'> Update</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
